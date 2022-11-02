@@ -25,7 +25,11 @@ static inline void init_ports (void){
 static inline void init_interrupts (void){
 	
 	asm("SEI");
-	EICRA = ((1<<ISC00) |(1<<ISC01));
+	PCICR = (PCIE0);
+	PCMSK0 = (1<<OPEN_B) | (1<<CLOSE_B) | (1<<LOCK_B);
+	
+	EICRA = (1<<ISC00) | (1ISC01);
 	EIMSK = (1<<INT0);
+	
 	return;
 }
